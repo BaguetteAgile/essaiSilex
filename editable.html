@@ -23,91 +23,69 @@
 <style class="silex-prodotype-style" type="text/css" data-style-id="all-style">.text-element > .silex-element-content {font-family: 'Roboto', sans-serif;}</style><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><meta name="viewport" content="width=device-width, initial-scale=1"><style type="text/css" class="silex-style-settings">.website-width {width: 1200px;}@media (min-width: 481px) {.silex-editor {min-width: 1400px;}}</style><!-- Silex HEAD tag do not remove --><html>
 <head>
 <title>Scripts javascript : Aperçu</title>
-<script language="JavaScript1.2">
-// Script Source: CodeLifter.com
-// Copyright 2003
-isIE=document.all;
-isNN=!document.all&&document.getElementById;
-isN4=document.layers;
-isHot=false;
+<SCRIPT LANGUAGE="JavaScript">
+/*
+Source :  http://www.editeurjavascript.com
+ Adaptation : http://www.outils-web.com
+*/
+if (document.getElementById)
+	{fromPub = 0;
+	iVolePub = new Image;
+	/*url de l'image*/
+	iVolePub.src = "../../img/ow.gif";
+	offsetyPub=0;
+	HauteurPub = 0;
+	place = fromPub;
+	xpub = 1;
+	ypub = 1;}
 
-function ddInit(e){
-  topDog=isIE ? "BODY" : "HTML";
-  whichDog=isIE ? document.all.theLayer : document.getElementById("theLayer");  
-  hotDog=isIE ? event.srcElement : e.target;  
-  while (hotDog.id!="titleBar"&&hotDog.tagName!=topDog){
-    hotDog=isIE ? hotDog.parentElement : hotDog.parentNode; }  
-  if (hotDog.id=="titleBar"){
-    offsetx=isIE ? event.clientX : e.clientX;
-    offsety=isIE ? event.clientY : e.clientY;
-    nowX=parseInt(whichDog.style.left);
-    nowY=parseInt(whichDog.style.top);
-    ddEnabled=true;
-    document.onmousemove=dd; }}
+function RandomDep()
+	{numimagePub= Math.round(Math.random()*4);
+	numimagePub ++;
+	return(numimagePub);}
 
-function dd(e){
-  if (!ddEnabled) return;
-  whichDog.style.left=isIE ? nowX+event.clientX-offsetx : nowX+e.clientX-offsetx; 
-  whichDog.style.top=isIE ? nowY+event.clientY-offsety : nowY+e.clientY-offsety;
-  return false;  }
+function VolimPub()
+	{if(document.all)
+		{EcranlargPub = document.body.clientWidth-iVolePub.width;
+		EcranhautPub = document.body.clientHeight-iVolePub.height;}
+	else
+		{EcranlargPub = screen.width-100;
+		EcranhautPub = screen.height-100;}
+	if (document.getElementById)
+		{if (place > EcranlargPub)
+			xpub = (-(RandomDep()));
+		if (place < fromPub)
+			xpub = RandomDep();
+		document.getElementById("pubBulle").style.left = (place = place + xpub);
+		document.getElementById("pubBulle").style.top = (HauteurPub += ypub)+offsetyPub;
+		if (HauteurPub>EcranhautPub)
+			ypub = (-(RandomDep()));
+		if (HauteurPub<0)
+			ypub = RandomDep();
+		tempo36 = setTimeout('VolimPub()', 20);	}}
 
-function ddN4(whatDog){
-  if (!isN4) return;
-  N4=eval(whatDog);
-  N4.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
-  N4.onmousedown=function(e){
-    N4.captureEvents(Event.MOUSEMOVE);
-    N4x=e.x;
-    N4y=e.y;
-  }
-  N4.onmousemove=function(e){
-    if (isHot){
-      N4.moveBy(e.x-N4x,e.y-N4y);
-      return false;   }
-  }
-  N4.onmouseup=function(){
-    N4.releaseEvents(Event.MOUSEMOVE);  }
-}
-
-function hideMe(){
-  if (isIE||isNN) whichDog.style.visibility="hidden";
-  else if (isN4) document.theLayer.visibility="hide";
-}
-
-function showMe(){
-  if (isIE||isNN) whichDog.style.visibility="visible";
-  else if (isN4) document.theLayer.visibility="show";
-}
-document.onmousedown=ddInit;
-document.onmouseup=Function("ddEnabled=false");
-
-</script>
+function OffSet()
+	{if (navigator.appName=="Microsoft Internet Explorer")
+   		offsetyPub = document.body.scrollTop;}
+window.onload = VolimPub;
+onscroll = OffSet;
+</SCRIPT>
 </head>
-<body>
 
-<br /><p class="tt" >Fenêtre non popup</p><br /><br />
+<body bgcolor="#FFFFFF">
 
-<div id="theLayer" style="position:absolute;width:250px;left:100;top:50;visibility:visible">
-<table border="0" width="250" bgcolor="#FFCC00" cellspacing="0" cellpadding="5">
-<tr><td width="100%">
-<table border="0" width="100%" cellspacing="0" cellpadding="0" height="36">
-<tr><td id="titleBar" style="cursor:move" width="100%">
-<ilayer width="100%" onSelectStart="return false">
-<layer width="100%" onMouseover="isHot=true;if (isN4) ddN4(theLayer)" onMouseout="isHot=false">
-<font face="Verdana" size="2" color="#000000"><b>Titre de la fenêtre</b></font>
-</layer></ilayer></td>
-<td style="cursor:hand" valign="top"><a href="#" onClick="hideMe();return false"><font color=#ffffff size=2 face=arial  style="text-decoration:none">X</font></a>
-</td></tr>
-<tr><td width="100%" bgcolor="#FFFFFF" style="padding:4px" colspan="2">
-<font face="Verdana" size="2" color="#000080">Vous pouvez déplacer cette fenêtre comme un simple fenêtre windows.<br>
-Vous pouvez bien sur intégrer des <b>balises HTML</b>, liens hypertextes etc...<br><br>
-</font>
-</td></tr></table> 
-</td></tr></table>
-</div>
-<br><br>
-Voici les codes qui permettent de <a href="javascript:showMe();">Montrer</a> la fenêtre ou de la 
-<a href="javascript:hideMe();">Cacher</a>
+<br /><p class="tt" >Votre pub qui se promène sur l'écran</p><br /><br />
+
+<SCRIPT LANGUAGE="JavaScript">
+if (document.getElementById)
+	{
+	document.write('<DIV ID="pubBulle" onMouseOver="clearTimeout(tempo36)" onMouseOut="VolimPub()" ')
+	document.write('STYLE="position:absolute; top:200px; left:-100px; z-indexpub:10"> ')
+	/*placez l'ul de votre pub et la balise title*/
+	document.write('<A HREF="http://www.outils-web.com/pc.asp?cod=gall" TARGET="_blank"><IMG SRC="'+iVolePub.src+'" BORDER=0 HSPACE=0 VSPACE=0 title="créez votre diaporama flash"></A></DIV>');
+	}
+</SCRIPT>
+
 
 </body>
 </html><!-- End of Silex HEAD tag do not remove --></head>
