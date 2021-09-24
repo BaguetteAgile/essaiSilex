@@ -15,80 +15,12 @@
 
     <style type="text/css" class="silex-style"></style>
     <script type="text/javascript" class="silex-script"></script>
-    <style class="silex-inline-styles" type="text/css">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 1403.5416870117188px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1601589250030-4 {width: 501px; min-height: 803px; background-color: rgb(255, 255, 255); position: absolute; top: 6.9930572509765625px; left: 45.996551513671875px;}.silex-id-1606893193766-0 {width: 382px; min-height: 155px; background-color: rgb(255, 255, 255); position: absolute; top: 57.26753234863281px; left: 600.962158203125px;}.silex-id-1626183324313-0 {width: 510px; min-height: 586px; background-color: rgb(255, 255, 255); position: absolute; top: 323.99305725097656px; left: 581.8336791992188px;}.silex-id-1629214359610-0 {width: 465px; min-height: 235px; background-color: rgb(255, 255, 255); position: absolute; top: 129.99652099609375px; left: 600.4659271240234px;}@media only screen and (max-width: 480px) {.silex-id-1601589250030-4 {min-height: 803px; top: 0px; left: 0px; width: 486.4618225097656px;}}</style>
+    <style class="silex-inline-styles" type="text/css">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 1403.5416870117188px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1601589250030-4 {width: 501px; min-height: 803px; background-color: rgb(255, 255, 255); position: absolute; top: 6.9930572509765625px; left: 45.996551513671875px;}.silex-id-1606893193766-0 {width: 382px; min-height: 155px; background-color: rgb(255, 255, 255); position: absolute; top: 57.26753234863281px; left: 600.962158203125px;}.silex-id-1626183324313-0 {width: 510px; min-height: 586px; background-color: rgb(255, 255, 255); position: absolute; top: 323.99305725097656px; left: 581.8336791992188px;}.silex-id-1629214359610-0 {width: 465px; min-height: 235px; background-color: rgb(255, 255, 255); position: absolute; top: 129.99652099609375px; left: 600.4659271240234px;}.silex-id-1632469752918-1 {width: 100px; min-height: 100px; background-color: rgb(255, 255, 255); position: absolute; top: 893.013916015625px; left: 61.003509521484375px;}@media only screen and (max-width: 480px) {.silex-id-1601589250030-4 {min-height: 803px; top: 0px; left: 0px; width: 486.4618225097656px;}}</style>
     <title></title>
     
 
     
-<style class="silex-prodotype-style" type="text/css" data-style-id="all-style">.text-element > .silex-element-content {font-family: 'Roboto', sans-serif;}</style><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><meta name="viewport" content="width=device-width, initial-scale=1"><style type="text/css" class="silex-style-settings">.website-width {width: 1200px;}@media (min-width: 481px) {.silex-editor {min-width: 1400px;}}</style><!-- Silex HEAD tag do not remove --><html>
-<head>
-<title>Scripts javascript : Aperçu</title>
-<SCRIPT LANGUAGE="JavaScript">
-/*
-Source :  http://www.editeurjavascript.com
- Adaptation : http://www.outils-web.com
-*/
-if (document.getElementById)
-	{fromPub = 0;
-	iVolePub = new Image;
-	/*url de l'image*/
-	iVolePub.src = "../../img/ow.gif";
-	offsetyPub=0;
-	HauteurPub = 0;
-	place = fromPub;
-	xpub = 1;
-	ypub = 1;}
-
-function RandomDep()
-	{numimagePub= Math.round(Math.random()*4);
-	numimagePub ++;
-	return(numimagePub);}
-
-function VolimPub()
-	{if(document.all)
-		{EcranlargPub = document.body.clientWidth-iVolePub.width;
-		EcranhautPub = document.body.clientHeight-iVolePub.height;}
-	else
-		{EcranlargPub = screen.width-100;
-		EcranhautPub = screen.height-100;}
-	if (document.getElementById)
-		{if (place > EcranlargPub)
-			xpub = (-(RandomDep()));
-		if (place < fromPub)
-			xpub = RandomDep();
-		document.getElementById("pubBulle").style.left = (place = place + xpub);
-		document.getElementById("pubBulle").style.top = (HauteurPub += ypub)+offsetyPub;
-		if (HauteurPub>EcranhautPub)
-			ypub = (-(RandomDep()));
-		if (HauteurPub<0)
-			ypub = RandomDep();
-		tempo36 = setTimeout('VolimPub()', 20);	}}
-
-function OffSet()
-	{if (navigator.appName=="Microsoft Internet Explorer")
-   		offsetyPub = document.body.scrollTop;}
-window.onload = VolimPub;
-onscroll = OffSet;
-</SCRIPT>
-</head>
-
-<body bgcolor="#FFFFFF">
-
-<br /><p class="tt" >Votre pub qui se promène sur l'écran</p><br /><br />
-
-<SCRIPT LANGUAGE="JavaScript">
-if (document.getElementById)
-	{
-	document.write('<DIV ID="pubBulle" onMouseOver="clearTimeout(tempo36)" onMouseOut="VolimPub()" ')
-	document.write('STYLE="position:absolute; top:200px; left:-100px; z-indexpub:10"> ')
-	/*placez l'ul de votre pub et la balise title*/
-	document.write('<A HREF="http://www.outils-web.com/pc.asp?cod=gall" TARGET="_blank"><IMG SRC="'+iVolePub.src+'" BORDER=0 HSPACE=0 VSPACE=0 title="créez votre diaporama flash"></A></DIV>');
-	}
-</SCRIPT>
-
-
-</body>
-</html><!-- End of Silex HEAD tag do not remove --></head>
+<style class="silex-prodotype-style" type="text/css" data-style-id="all-style">.text-element > .silex-element-content {font-family: 'Roboto', sans-serif;}</style><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><meta name="viewport" content="width=device-width, initial-scale=1"><style type="text/css" class="silex-style-settings">.website-width {width: 1200px;}@media (min-width: 481px) {.silex-editor {min-width: 1400px;}}</style></head>
 
 <body data-silex-id="body-initial" class="body-initial all-style enable-mobile prevent-resizable prevent-selectable editable-style silex-runtime" data-silex-type="container-element" style="">
     
@@ -135,6 +67,74 @@ if (document.getElementById)
     that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
   </p>
 </video>
+</div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1632469752918-1 page-page-1 paged-element" data-silex-id="silex-id-1632469752918-1" style=""><div class="silex-element-content">
+
+<title>Scripts javascript : Aperçu</title>
+<script language="JavaScript">
+/*
+Source :  http://www.editeurjavascript.com
+ Adaptation : http://www.outils-web.com
+*/
+if (document.getElementById)
+	{fromPub = 0;
+	iVolePub = new Image;
+	/*url de l'image*/
+	iVolePub.src = "../../img/ow.gif";
+	offsetyPub=0;
+	HauteurPub = 0;
+	place = fromPub;
+	xpub = 1;
+	ypub = 1;}
+
+function RandomDep()
+	{numimagePub= Math.round(Math.random()*4);
+	numimagePub ++;
+	return(numimagePub);}
+
+function VolimPub()
+	{if(document.all)
+		{EcranlargPub = document.body.clientWidth-iVolePub.width;
+		EcranhautPub = document.body.clientHeight-iVolePub.height;}
+	else
+		{EcranlargPub = screen.width-100;
+		EcranhautPub = screen.height-100;}
+	if (document.getElementById)
+		{if (place > EcranlargPub)
+			xpub = (-(RandomDep()));
+		if (place < fromPub)
+			xpub = RandomDep();
+		document.getElementById("pubBulle").style.left = (place = place + xpub);
+		document.getElementById("pubBulle").style.top = (HauteurPub += ypub)+offsetyPub;
+		if (HauteurPub>EcranhautPub)
+			ypub = (-(RandomDep()));
+		if (HauteurPub<0)
+			ypub = RandomDep();
+		tempo36 = setTimeout('VolimPub()', 20);	}}
+
+function OffSet()
+	{if (navigator.appName=="Microsoft Internet Explorer")
+   		offsetyPub = document.body.scrollTop;}
+window.onload = VolimPub;
+onscroll = OffSet;
+</script>
+
+
+
+
+<br><p class="tt">Votre pub qui se promène sur l'écran</p><br><br>
+
+<script language="JavaScript">
+if (document.getElementById)
+	{
+	document.write('<DIV ID="pubBulle" onMouseOver="clearTimeout(tempo36)" onMouseOut="VolimPub()" ')
+	document.write('STYLE="position:absolute; top:200px; left:-100px; z-indexpub:10"> ')
+	/*placez l'ul de votre pub et la balise title*/
+	document.write('<A HREF="http://www.outils-web.com/pc.asp?cod=gall" TARGET="_blank"><IMG SRC="'+iVolePub.src+'" BORDER=0 HSPACE=0 VSPACE=0 title="créez votre diaporama flash"></A></DIV>');
+	}
+</script>
+
+
+
 </div></div></div>
     </section>
     <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366450713-3 section-element prevent-resizable" data-silex-id="silex-id-1478366450713-3" style="">
