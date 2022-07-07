@@ -1,6 +1,6 @@
 <!DOCTYPE html><html class="" lang=""><head><script type="text/javascript" class="silex-json-styles" data-silex-static="">
     window.silex = window.silex || {}
-    window.silex.data = {"site":{"width":1200},"pages":[{"id":"page-page-1","displayName":"Page 1","link":{"linkType":"LinkTypePage","href":"#!page-page-1"},"canDelete":true,"canProperties":true,"canMove":true,"canRename":true,"opened":false}]}</script>
+    window.silex.data = {"site":{"width":1200},"pages":[{"id":"page-page-1","displayName":"Page 1","link":{"linkType":"LinkTypePage","href":"#!page-page-1"},"canDelete":true,"canProperties":true,"canMove":true,"canRename":true,"opened":false},{"id":"page-active-menu","displayName":"active menu","link":{"linkType":"LinkTypePage","href":"#!page-active-menu"},"canDelete":true,"canRename":true,"canMove":true,"canProperties":true}]}</script>
     <meta charset="UTF-8">
     <!-- generator meta tag -->
     <!-- leave this for stats and Silex version check -->
@@ -13,9 +13,93 @@
     <link rel="stylesheet" href="https://editor.silex.me/static/2.12/normalize.css" data-silex-static="">
     <link rel="stylesheet" href="https://editor.silex.me/static/2.12/front-end.css" data-silex-static="">
 
-    <style class="silex-style"></style>
-    <script type="text/javascript" class="silex-script"></script>
-    <style class="silex-inline-styles">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 600px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1655464749762-1 {width: 400px; min-height: 400px; background-color: transparent; position: absolute; top: 88.5625px; left: 371.80206298828125px;}@media only screen and (max-width: 480px) {}</style>
+    <style class="silex-style">.active-menu {background-color: red;}.static-element {border-top: 3px solid #333;}</style>
+    <script type="text/javascript" class="silex-script">
+/*
+ * active menu widget for Silex
+ * create an element which links to an anchor, e.g. an element with a link to #anchor1
+ * add the css class "anchor-link" to this element
+ * create an element which is the anchor, e.g. an element with the css class "anchor1"
+ * when the user clicks on the link, the scroll slides until the element is visible
+ * when the user slides and the element is visible, the link gets a css class "active-menu"
+ */
+$(function() {
+    // Cache selectors
+    var lastId,
+        // All list items
+        menuItems = $(".anchor-link"),
+        // Anchors corresponding to menu items
+        // find the name of the elements which are anchors
+        scrollItems = menuItems.map(function(){
+            // the names are in the href attribute of the anchor links
+            var attr = $(this).attr("data-silex-href") || $(this).attr("href");
+            // case of a link in text field or an external link after publish
+            $(this).find("[href]").each(function() {
+                attr = $(this).attr("href");
+            });
+            // case of an "external link" before publish
+            $(this).find("[data-silex-href]").each(function() {
+                attr = $(this).attr("href");
+            });
+            // the links to anchors are expected to start with #
+            if(attr && attr.indexOf("#") === 0) {
+                var name = attr.substring(attr.lastIndexOf("#") + 1);
+                // exclude page names (#!page-)
+                if(name.indexOf("!page") !== 0) {
+                    var item = $("." + name);
+                    // check if there is a hash in the URL to scroll to the anchor at start
+                    if(window.location.hash.indexOf("#" + name) > 0) {
+                        var offsetTop = item.offset().top;
+                        $('html, body').stop().animate({
+                            scrollTop: offsetTop
+                        }, 300);
+                    }
+                    // now find the element itself, which has the name as a css class
+                    if (item.length) { 
+                        return {
+                            "link": this,
+                            "item": item.get(0)
+                        };
+                    }
+                }
+            }
+        });
+    // Bind click handler to menu items
+    // so we can get a fancy scroll animation
+    scrollItems.each(function() {
+        var link = this.link;
+        var item = this.item;
+        $(link).click(function(e){
+            // leave time for the page to open
+            // and then scroll
+            setTimeout(function() {
+              var offsetTop = $(item).offset().top;
+              $('html, body').stop().animate({
+                  scrollTop: offsetTop
+              }, 300);
+              e.preventDefault();
+            }, 100);
+        });
+    })
+
+    // Bind to scroll
+    $(window).scroll(function(){
+       // Get container scroll position
+       var fromTop = $(this).scrollTop();
+       // Get id of current scroll item
+       var cur = scrollItems.map(function(){
+         if ($(this.item).offset().top <= fromTop)
+           return this;
+       });
+       // add the css class on the current menu item
+       $(".active-menu").removeClass("active-menu");
+       if(cur.length > 0) {
+           cur = cur[cur.length-1];
+           $(cur.link).addClass("active-menu");
+       }
+    });
+});</script>
+    <style class="silex-inline-styles">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 600px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1655464749762-1 {width: 400px; min-height: 400px; background-color: transparent; position: absolute; top: 88.5625px; left: 371.80206298828125px;}.silex-id-1657217036890-0 {width: 100px; min-height: 100px; position: absolute; top: 27.59386682510376px; left: 28.993057250976562px;}.silex-id-1657217120698-1 {width: 868.5590744018555px; min-height: 524.5659713745117px; background-color: rgba(181,181,181,1); position: absolute; top: 28px; left: 216px;}@media only screen and (max-width: 480px) {}</style>
     <title></title>
     
 
@@ -33,11 +117,11 @@
 
 
 
-    <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366444112-1 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1478366444112-1">
+    <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366444112-1 section-element prevent-resizable" data-silex-id="silex-id-1478366444112-1">
         <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1478366444112-0 container-element website-width" data-silex-id="silex-id-1478366444112-0"></div>
     </section>
-    <section data-silex-type="container-element" class="container-element editable-style silex-id-1474394621033-3 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1474394621033-3">
-        <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1474394621032-2 container-element website-width selected" data-silex-id="silex-id-1474394621032-2"><div data-silex-type="html-element" class="editable-style html-element silex-id-1655464749762-1 silex-component-form silex-use-height-not-minheight silex-element-content-full-height" data-silex-id="silex-id-1655464749762-1" style=""><div class="silex-element-content"><form id="id_1655464749950_267" action="https://formspree.io/your@email.com" method="POST">
+    <section data-silex-type="container-element" class="container-element editable-style silex-id-1474394621033-3 section-element prevent-resizable" data-silex-id="silex-id-1474394621033-3">
+        <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1474394621032-2 container-element website-width selected" data-silex-id="silex-id-1474394621032-2"><div data-silex-type="html-element" class="editable-style html-element silex-id-1655464749762-1 silex-component-form silex-use-height-not-minheight silex-element-content-full-height page-page-1 paged-element" data-silex-id="silex-id-1655464749762-1" style=""><div class="silex-element-content"><form id="id_1657216876461_47" action="https://formspree.io/your@email.com" method="POST">
   
   <div>
     <label for="field1">Name</label>
@@ -58,11 +142,11 @@
   
   <input type="submit" value="Send">
 </form>
-<style>#id_1655464749950_267 input[type=text], select {width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box;}#id_1655464749950_267 input[type=submit] {width: 100%; background-color: #4CAF50; color: #FFFFFF; padding: 14px 20px; margin: 8px 0; border: 1px solid #4CAF50; border-radius: 3px; cursor: pointer;}#id_1655464749950_267 label {color: #000000;}#id_1655464749950_267 .fill-vertical {flex: 1 1 auto; display: flex; flex-direction: column;}#id_1655464749950_267 .fill-vertical textarea {flex: 1 1 auto; width: 100%; height: 150px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 3px; background-color: #f8f8f8; font-size: 16px; resize: none;}#id_1655464749950_267 {border-radius: 3px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;}</style>
+<style>#id_1657216876461_47 input[type=text], select {width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box;}#id_1657216876461_47 input[type=submit] {width: 100%; background-color: #4CAF50; color: #FFFFFF; padding: 14px 20px; margin: 8px 0; border: 1px solid #4CAF50; border-radius: 3px; cursor: pointer;}#id_1657216876461_47 label {color: #000000;}#id_1657216876461_47 .fill-vertical {flex: 1 1 auto; display: flex; flex-direction: column;}#id_1657216876461_47 .fill-vertical textarea {flex: 1 1 auto; width: 100%; height: 150px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 3px; background-color: #f8f8f8; font-size: 16px; resize: none;}#id_1657216876461_47 {border-radius: 3px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;}</style>
 
-</div></div></div>
+</div></div><div data-silex-type="container-element" class="editable-style container-element silex-id-1657217120698-1 page-active-menu paged-element" data-silex-id="silex-id-1657217120698-1" style=""></div><a data-silex-type="text-element" class="editable-style text-element silex-id-1657217036890-0 page-active-menu paged-element anchor-link" data-silex-id="silex-id-1657217036890-0" style="" href="#anchor1"><div class="silex-element-content normal"><p>New text box</p></div></a></div>
     </section>
-    <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366450713-3 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1478366450713-3">
+    <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366450713-3 section-element prevent-resizable" data-silex-id="silex-id-1478366450713-3" style="">
         <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1478366450713-2 container-element website-width" data-silex-id="silex-id-1478366450713-2">
 
             <div data-silex-id="silex-id-1442914737143-3" class="editable-style silex-id-1442914737143-3 text-element" data-silex-type="text-element">
